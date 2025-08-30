@@ -5,14 +5,14 @@ import ProductListItem from '../components/Product_listItem';
 import {Button, ButtonText} from '../components/ui/button';
 export default function HomeScreen() {
     return(
-        <Button variant="solid" >
-            <ButtonText>
-                View All Products
-            </ButtonText>
-        </Button>
-    //  <FlatList data={products} 
-    //    renderItem={({item}) => <ProductListItem product={item} />}
-    //  />
+      
+     <FlatList 
+        data={products} 
+        numColumns={2}
+        contentContainerClassName='gap-2'
+        columnWrapperClassName='gap-2'
+       renderItem={({item}) => <ProductListItem product={item} />}
+     />
 
     )
 }
