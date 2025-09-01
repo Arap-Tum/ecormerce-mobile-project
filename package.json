@@ -12,6 +12,7 @@
     "@expo/html-elements": "^0.10.1",
     "@expo/metro-runtime": "~5.0.4",
     "@gluestack-ui/core": "^3.0.0",
+    "@gluestack-ui/themed": "^1.1.73",
     "@gluestack-ui/utils": "^3.0.0",
     "@legendapp/motion": "^2.3.0",
     "babel-plugin-module-resolver": "^5.0.2",
