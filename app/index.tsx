@@ -1,17 +1,28 @@
 import { useEffect, useState } from "react";
 import { View, Text, FlatList, useWindowDimensions } from "react-native";
-import products from "../assets/products.json";
+// import products from "../assets/products.json";
 import { useMemo } from "react";
 
 import ProductListItem from "../components/Product_listItem";
 import { Button, ButtonText } from "../components/ui/button";
+import { listProducts } from "@/api/products";
 
 export default function HomeScreen() {
-  const { width } = useWindowDimensions();
+  const [products, setProducts] = useState();
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const data = await listProducts();
+      console.log("data: ", data);
+      setProducts(data);
+    };
+
+    fetchProducts();
+  }, []);
+
+  const { width } = useWindowDimensions();
   // calculate columns
   const numColumns = width > 700 ? 4 : 2;
-
   // create a key that changes with numColumns
   const listKey = useMemo(() => `list-${numColumns}`, [numColumns]);
 
