@@ -14,6 +14,7 @@ export default function HomeScreen() {
     queryFn: listProducts,
   });
 
+  // DEVICE WIDTH INTEGRATION
   const { width } = useWindowDimensions();
   // calculate columns
   const numColumns = width > 700 ? 4 : 2;
@@ -25,6 +26,7 @@ export default function HomeScreen() {
   }
 
   if (error) {
+    console.log(error);
     return <Text>Error Fetching Product </Text>;
   }
   return (
