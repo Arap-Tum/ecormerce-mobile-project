@@ -8,10 +8,29 @@ import { Button } from "@/components/ui/button";
 import { ButtonText } from "@/components/ui/button";
 import { Redirect } from "expo-router";
 import { router } from "expo-router";
+import { useMutation } from "@tanstack/react-query";
+import { createOrder } from "@/api/oders";
 
 export default function CartScrean() {
   const items = useCart((state: any) => state.items);
   const resetCart = useCart((state: any) => state.resetCart);
+
+  const createOrderMutation = useMutation({
+    mutationFn: () =>
+      createOrder(
+        items.map((item) => ({
+          productId: item.product.id,
+          quantity: item.quantity,
+          price: item.product.price,
+        }))
+      ),
+    onSuccess: (data) => {
+      console.log("Order created:", data);
+    },
+    onError: (error) => {
+      console.error("Order creation failed:", error);
+    },
+  });
 
   const onCheckout = async () => {
     // Send order toserver
