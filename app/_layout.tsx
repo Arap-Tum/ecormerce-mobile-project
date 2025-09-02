@@ -5,7 +5,7 @@ import { Text } from "@/components/ui/text";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // import {Icon} from '@component/ui/icon'
-import { ShoppingCart } from "lucide-react-native";
+import { ShoppingCart, User } from "lucide-react-native";
 import { useCart } from "@/store/cartStore";
 import { Pressable, View } from "react-native";
 
@@ -19,6 +19,7 @@ export default function RootLayout() {
       <GluestackUIProvider>
         <Stack
           screenOptions={{
+            headerTitleAlign: "center",
             headerRight: () =>
               cartItemsNum > 0 && (
                 <Link href={"/cart"} asChild>
@@ -28,6 +29,13 @@ export default function RootLayout() {
                   </Pressable>
                 </Link>
               ),
+            headerLeft: () => (
+              <Link href={"/login"} asChild>
+                <Pressable className="flex-row gap-2">
+                  <User size={24} color="black" />
+                </Pressable>
+              </Link>
+            ),
           }}
         >
           <Stack.Screen name="index" options={{ title: "Shop" }} />
